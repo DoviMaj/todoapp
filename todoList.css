@@ -1,0 +1,113 @@
+body{
+    background: rgba(253,243,216,1);
+    font-family: 'Inconsolata', monospace;
+    margin: 0px;
+}
+h1{
+    margin: 30px;;
+}
+#title{
+    position: static;
+    width: 96%;
+    font-size: 80px;
+    text-align: center;
+    color: rgb(230, 212, 168);
+}
+
+#todoList{
+    position: relative;
+    margin: auto;
+    width: 40%;
+    border: 3px;
+    box-shadow: 0px 26px 35px -13px rgba(64,97,66,1);
+    background: rgba(252,234,187,1);
+}
+
+.todosLi {
+    padding: 15px;
+    font-size: 25px;
+    border-bottom: 1px solid #f8f0f0;
+}
+
+ul {
+    list-style-type: none;
+}
+
+#addTodoTextInput{
+    width: 94.4%;
+    height: 40px;
+    padding: 15px;  
+    font-size: 25px ;
+}
+
+::placeholder{
+    font-size: 26px;
+    font-style: italic;
+    color: #c4a6a6;
+}
+
+.checkBox{
+    float: left;
+    padding: 30px;
+    margin: 10px;
+    border: 2px solid #FFFFFF;
+}
+
+.deleteButton{
+    margin-right: 60px;
+    float: right;
+    border-radius: 50%;
+    border: none;
+    font-size: 20px;
+    color: #8ea094;
+    background: rgba(252,234,187,1);
+}
+
+#footer{
+    text-align: center;
+    padding-top: 24px;
+    padding-bottom: 10px;
+}
+.changeTodoInput{
+    width: 80%;
+    padding: 10px 10px 10px 33px;
+    margin: 5px 0px 5px 15px;
+    font-size: 25px;
+}
+
+#deleteAllButton{
+    float: right;
+    margin: 20px 55px 0px 0px;
+}
+
+#toggleAllButton{
+    margin: 20px 0px 0px 55px;
+}
+
+input{
+    font-family: 'Inconsolata', monospace;
+    outline: none;
+    border: none;
+}
+
+.hide {
+    position: absolute !important;
+    top: -9999px !important;
+    left: -9999px !important;
+ }
+.checked{
+    text-decoration: line-through;
+    font-style : italic;
+    color : #8ea094;
+ }
+
+#lowerButtons{
+     text-align: center;
+     padding: 10px;
+ }
+span{
+    float: right;
+     text-decoration: underline;
+     color: rgb(165, 148, 105);;
+     margin: 10px;
+ }
