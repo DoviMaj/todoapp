@@ -29,6 +29,28 @@ let todosList = {
         this.todos.splice(position, 1);
         view.displayTodos();
     }, 
+    deleteCompleted: function(){
+        this.todos.forEach(function(todo, index){
+            if(todo.completed === true){
+                todosList.deleteTodo(index)
+            }
+        })
+    },
+
+    hasCompletedTodos: function(){
+        let completedTodos = 0;
+
+        this.todos.forEach(function(todos){
+            if(todos.completed === true){
+                completedTodos++;
+            }
+        })
+        if(completedTodos === 0){
+           return false;
+        } else{
+            return true;
+        }
+    },
 
     deleteAll: function(){ 
         let todos = JSON.stringify(todosList.todos);
@@ -79,7 +101,7 @@ let todosList = {
             todos.completed = false;
         } else {
             todos.completed = true;
-            }
+            }    
         })
         view.displayTodos();
     }
@@ -124,11 +146,14 @@ let handlers = {
     }
 };
 
+let toggledCompletedOnce = false; // checks if todoLi was toggled for deleteCompletedButton();
+
 //takes care of displaying the todo list
 let view = {
     displayTodos: function(){
     todosUl = document.querySelector("ul");
     todosUl.innerHTML = "";
+    todosUl.className = "todosUl" ;
     todosList.todos.forEach(function(todo, position){
         let todosLi = document.createElement("li");
         todosLi.textContent =  todo.todoText;
@@ -154,6 +179,8 @@ let view = {
           todosLi.classList.add("todosLi") ;
         };
 
+        
+
         let changeTodoInput = document.createElement("input");
         changeTodoInput.type = "text";
         changeTodoInput.id = position;
@@ -167,28 +194,48 @@ let view = {
                 }
             }
         });
-
         changeTodoInput.addEventListener("blur", function(event){
             view.displayTodos();
         })
 
-           
-        todosUl.className = "todosUl" ;
-
+        
         todosUl.appendChild(todosLi);
         todosUl.appendChild(changeTodoInput);
         todosLi.appendChild(checkBox);
         todosLi.appendChild(this.deleteButton());
     }, this)
     },
+
     deleteButton: function(){
         let deleteButton = document.createElement("button");
         deleteButton.classList.add("deleteButton", "hide") ;
         deleteButton.innerText = "x";
         return deleteButton;
     },
+
+    deleteCompletedButton: function(){
+        let deleteCompletedButton = document.createElement("button");
+        let lowerButtons = document.querySelector('#lower-buttons');
+        deleteCompletedButton.id = "deleteCompletedButton";
+        deleteCompletedButton.innerText = "Delete Completed";
+        deleteCompletedButton.addEventListener('click', function(event){
+            todosList.deleteCompleted();
+        })
+        debugger;
+        // dont get why need to call element again..
+        if(todosList.hasCompletedTodos() && 
+        !document.querySelector("#deleteCompletedButton")){  
+            lowerButtons.appendChild(deleteCompletedButton);
+        }
+        else{
+            let deleteCompletedButton = document.querySelector('#deleteCompletedButton');
+            deleteCompletedButton.parentNode.removeChild(deleteCompletedButton);
+        }
+        this.displayTodos();
+    },
+    
     setUpEventListeners: function(){
-        var todosUl = document.querySelector("ul");
+        var todosUl = document.querySelector("ul");      
         todosUl.addEventListener("click", function(event) {
         let clickedElement = event.target;
         if(clickedElement.className === "deleteButton"){
@@ -196,7 +243,8 @@ let view = {
           }
           if(clickedElement.className === "checkBox"){
             todosList.toggleCompleted(clickedElement.id);
-          }
+            view.deleteCompletedButton();
+        }
           if(clickedElement.className === "todosLi"){
             clickedElement.classList.add("hide") ;
             clickedElement.nextSibling.classList.remove("hide");
@@ -206,13 +254,9 @@ let view = {
         });
     }
 }
+
+
 let todos = JSON.stringify(todosList.todos);
 localStorage.setItem("todos", todos);
 
 let localData = JSON.parse(localStorage.getItem("todos"))
-
-// requirements v13
-
-// save todos on localstorage everytime deleteall is run (x)
-// create function that restores all todos (x)
-// show undo button for some time after deleteAll (x)
