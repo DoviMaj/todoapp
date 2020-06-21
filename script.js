@@ -1,4 +1,4 @@
-//takes care of the todo list actions and data
+
 let todosList = {
     todos: [{
         todoText: "Item 1",
@@ -12,12 +12,15 @@ let todosList = {
         todoText: 'Item 3',
         completed: false
     }],
+
     addTodo: function(todoText){
-        this.todos.push({
-            todoText: todoText,
-            completed: false
+        if(todoText !== ""){
+            this.todos.push({
+                todoText: todoText,
+                completed: false
         });
         view.displayTodos();
+        }
     },
 
     changeTodo: function(position, todoText){
@@ -29,57 +32,35 @@ let todosList = {
         this.todos.splice(position, 1);
         view.displayTodos();
     }, 
+    
     deleteCompleted: function(){
-        this.todos.forEach(function(todo, index){
-            if(todo.completed === true){
-                todosList.deleteTodo(index)
-            }
-        })
-    },
-
-    hasCompletedTodos: function(){
-        let completedTodos = 0;
-
-        this.todos.forEach(function(todos){
-            if(todos.completed === true){
-                completedTodos++;
-            }
-        })
-        if(completedTodos === 0){
-           return false;
-        } else{
-            return true;
-        }
-    },
-
-    deleteAll: function(){ 
         let todos = JSON.stringify(todosList.todos);
         localStorage.setItem("todos", todos);
-
-        for (var i= todosList.todos.length; i>=0; i--) {
-           todosList.deleteTodo(i);
-        }
+        let todo = todosList.todos;
+        for (var i= todo.length -1; i>=0; i--) {
+            if(todo[i].completed === true){
+                this.deleteTodo(todo[i]);
+            }
+         }
        this.restoreTodos();
     },
 
     restoreTodos: function() {
-        let localData = JSON.parse(localStorage.getItem("todos"));
         let topButtons = document.getElementById("topButtons");
         let restoreButton = document.createElement("span");
         restoreButton.addEventListener("click", function(){
-            todosList.todos = localData;
-            this.remove();
+            debugger;
+            todosList.todos = JSON.parse(localStorage.getItem("todos"));;
             view.displayTodos();
         })
         restoreButton.innerText = "undo"
         topButtons.appendChild(restoreButton);
 
-        setTimeout(function(){ restoreButton.remove() ; }, 3000);
+        setTimeout(function(){ restoreButton.remove(); }
+        , 2000);
         
         view.displayTodos();
     },
-
-    
 
     toggleCompleted: function(position){
         this.todos[position].completed = !this.todos[position].completed;
@@ -103,52 +84,34 @@ let todosList = {
             todos.completed = true;
             }    
         })
+        view.deleteCompletedButton();
         view.displayTodos();
+    },
+
+    hasCompletedTodos: function(){
+        let completedTodos = 0;
+
+        this.todos.forEach(function(todos){
+            if(todos.completed === true){
+                completedTodos++;
+            }
+        })
+        if(completedTodos > 0){
+           return true;
+        } else{
+            return false;
+        }
     }
 }
 
 let addTodoTextInput = document.getElementById("addTodoTextInput");
 
 addTodoTextInput.addEventListener("keyup", function(event){
-    if (event.keyCode === 13) {
-        handlers.addTodo(addTodoTextInput.value);
-    }
+        todosList.addTodo(addTodoTextInput.value);
+        addTodoTextInput.value = "";
 });
  
-//takes care of the user interactions
-let handlers = {
-    addTodo: function() {
-        let addTodoTextInput = document.getElementById("addTodoTextInput");
-        if(addTodoTextInput.value === ""){
-            console.log("you havent enterend a value");
-        } else {
-            todosList.addTodo(addTodoTextInput.value);
-        }
-        addTodoTextInput.value = "";
-    }, 
-    changeTodo: function() { 
-        let changeTodoPositionInput = document.getElementById("changeTodoPositionInput");
-        let changeTodoTextInput = document.getElementById("changeTodoTextInput"); 
-        if(changeTodoTextInput.value === "" || changeTodoPositionInput.value === ""){
-            console.log("you havent enterend the values for change");
-        } else {
-            todosList.changeTodo(changeTodoPositionInput.valueAsNumber, changeTodoTextInput.value)
-        }
-        changeTodoPositionInput.value = "";
-        changeTodoTextInput.value = "";
-    },
-    deleteTodo: function(position) {
-        todosList.deleteTodo(position, 1);
-    },
-    toggleCompleted: function() {
-        let toggleCompletedPositionInput = document.getElementById("toggleCompletedPositionInput");
-        todosList.toggleCompleted(toggleCompletedPositionInput);
-    }
-};
 
-let toggledCompletedOnce = false; // checks if todoLi was toggled for deleteCompletedButton();
-
-//takes care of displaying the todo list
 let view = {
     displayTodos: function(){
     todosUl = document.querySelector("ul");
@@ -216,18 +179,17 @@ let view = {
     deleteCompletedButton: function(){
         let deleteCompletedButton = document.createElement("button");
         let lowerButtons = document.querySelector('#lower-buttons');
+
         deleteCompletedButton.id = "deleteCompletedButton";
         deleteCompletedButton.innerText = "Delete Completed";
         deleteCompletedButton.addEventListener('click', function(event){
             todosList.deleteCompleted();
         })
-        debugger;
-        // dont get why need to call element again..
-        if(todosList.hasCompletedTodos() && 
-        !document.querySelector("#deleteCompletedButton")){  
+        let thereIsNoButtonYet = !document.querySelector("#deleteCompletedButton");
+        if(todosList.hasCompletedTodos() && thereIsNoButtonYet){  
             lowerButtons.appendChild(deleteCompletedButton);
         }
-        else{
+        if(!todosList.hasCompletedTodos()){
             let deleteCompletedButton = document.querySelector('#deleteCompletedButton');
             deleteCompletedButton.parentNode.removeChild(deleteCompletedButton);
         }
@@ -235,17 +197,18 @@ let view = {
     },
     
     setUpEventListeners: function(){
-        var todosUl = document.querySelector("ul");      
+        var todosUl = document.querySelector("ul");  
+
         todosUl.addEventListener("click", function(event) {
         let clickedElement = event.target;
         if(clickedElement.className === "deleteButton"){
-          handlers.deleteTodo(clickedElement.parentNode.id, 1);
+            todosList.deleteTodo(clickedElement.parentNode.id);
           }
-          if(clickedElement.className === "checkBox"){
+        if(clickedElement.className === "checkBox"){
             todosList.toggleCompleted(clickedElement.id);
             view.deleteCompletedButton();
         }
-          if(clickedElement.className === "todosLi"){
+        if(clickedElement.className === "todosLi"){
             clickedElement.classList.add("hide") ;
             clickedElement.nextSibling.classList.remove("hide");
             clickedElement.nextSibling.focus();
