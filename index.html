@@ -15,26 +15,29 @@
         <input type="text" placeholder="What do you want to do?" id='addTodoTextInput'>
       </div>
 
-      <div id="topButtons">
-        <button id="toggleAllButton" onclick="todosList.toggleAll()">Toggle All</button>
+      <div id="top-buttons">
+        <li class="styled-buttons" id="toggleAllButton" onclick="todosList.toggleAll()">Toggle All</li>
       </div>
       
         <ul>
             
       </ul>
 
-      <div id="lower-buttons">
-      <button>All</button>
+      <ul id="lower-buttons">
 
-      <button>Active</button>
+      <li><a class="styled-buttons" id="showAll" onclick= "view.showAll()">All</a></li>
+        
+      <li class="styled-buttons" id="showOnlyActive" onclick= "view.showOnlyActive()">Active</li>
 
-      <button>Completed</button>
-      </div>
+      <li class="styled-buttons" id="showOnlyCompleted" onclick= "view.showOnlyCompleted()">Completed</li>
+    </ul>
 
   </div>
 
   <div id="footer">
-    <p>created by <a href= "https://github.com/DoviMaj"> David Majowka</a></p>
+    <p>inspired by <a href='http://todomvc.com/examples/vanillajs/'>todomvc.com</a></p>
+    <p>learned from <a href='https://watchandcode.com/p/practical-javascript'>whatchandcode.com</a></p>
+    <p>coded by <a href= "https://github.com/DoviMaj"> David Majowka</a></p>
     <p>click on the todo to change it</p> 
   </div>
       

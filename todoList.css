@@ -14,26 +14,33 @@ h1{
     color: rgb(230, 212, 168);
 }
 
+#topButtons{
+    margin: 0px;
+}
+
+ul {
+    list-style-type: none;
+    margin: 0px;
+    padding: 0px;
+}
+
 #todoList{
     position: relative;
-    margin: auto;
-    width: 40%;
+    margin: auto; 
+    width: 30%;
     border: 3px;
     box-shadow: 0px 26px 35px -13px rgba(64,97,66,1);
 }
 
 .todosLi {
-    padding: 15px;
+    padding: 25px 0px 10px 26px;
     font-size: 25px;
-    border-bottom: 1px solid #f8f0f0;
+    border-bottom: 1px solid lightgrey;
 }
 
-ul {
-    list-style-type: none;
-}
 
 #addTodoTextInput{
-    width: 94.4%;
+    width: 92.6%;
     height: 40px;
     padding: 15px;  
     font-size: 25px ;
@@ -61,12 +68,20 @@ input[type='checkbox']:checked {
 }
 
 .deleteButton{
-    margin-right: 60px;
+    margin-right: 40px;
     float: right;
     border-radius: 50%;
     border: none;
     font-size: 20px;
     color: #8ea094;
+    background-color: white;
+}
+
+#deleteCompletedButton{
+    list-style: none;
+    position: absolute;
+    left: 237px;
+    top: 88px;
 }
 
 .changeTodoInput{
@@ -79,10 +94,16 @@ input[type='checkbox']:checked {
 #deleteAllButton{
     float: right;
     margin: 20px 55px 0px 0px;
+    color: inherit;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid #0000008f;
+    border-radius: 3px;
 }
 
 #toggleAllButton{
-    margin: 20px 0px 0px 55px;
+    position: relative;
+    margin: 20px 0px 0px 27px;
 }
 
 input{
@@ -101,27 +122,50 @@ input{
     font-style : italic;
     color : #8ea094;
  }
-
+#top-buttons{
+    padding-top: 25px;
+}
 #lower-buttons{
      text-align: center;
-     padding: 10px;
+     padding: 20px;
+ }
+
+ .styled-buttons{
+    display: inline;
+    color: inherit;
+    margin: 3px;
+    padding: 3px 7px;
+    text-decoration: none;
+    border: 1px solid #0000008f;
+    border-radius: 3px;
+    cursor: pointer;
+ }
+
+ #lower-buttons li{
+     display: inline;
  }
 
 span{
-    float: right;
-     text-decoration: underline;
-     color: rgb(165, 148, 105);;
-     margin: 10px;
+    position: absolute;
+    bottom: 19px;
+    right: 17px;
+    text-decoration: underline;
+    color: rgb(165, 148, 105);
+    margin: 10px;
  }
 
 #footer{
     text-align: center;
     padding-top: 24px;
-    padding-bottom: 10px;
+    margin-bottom: 20px;
     color: lightgrey ;
 }
 
 a{
-    text-decoration: none;
     color: inherit;
+}
+p{
+    margin-block-end: 0px;
+    margin-block-start: 10px;
+    font-size: 16px;
 }

@@ -46,11 +46,11 @@ let todosList = {
     },
 
     restoreTodos: function() {
-        let topButtons = document.getElementById("topButtons");
+        let topButtons = document.getElementById("top-buttons");
         let restoreButton = document.createElement("span");
         restoreButton.addEventListener("click", function(){
-            debugger;
             todosList.todos = JSON.parse(localStorage.getItem("todos"));;
+            view.deleteCompletedButton();
             view.displayTodos();
         })
         restoreButton.innerText = "undo"
@@ -58,8 +58,6 @@ let todosList = {
 
         setTimeout(function(){ restoreButton.remove(); }
         , 2000);
-        
-        view.displayTodos();
     },
 
     toggleCompleted: function(position){
@@ -107,8 +105,10 @@ let todosList = {
 let addTodoTextInput = document.getElementById("addTodoTextInput");
 
 addTodoTextInput.addEventListener("keyup", function(event){
+    if(event.keyCode === 13 && event.value !== ''){
         todosList.addTodo(addTodoTextInput.value);
-        addTodoTextInput.value = "";
+        addTodoTextInput.value = ""
+    }
 });
  
 
@@ -177,13 +177,18 @@ let view = {
     },
 
     deleteCompletedButton: function(){
-        let deleteCompletedButton = document.createElement("button");
-        let lowerButtons = document.querySelector('#lower-buttons');
+        let deleteCompletedButton = document.createElement("li");
+        let lowerButtons = document.querySelector('#top-buttons');
 
         deleteCompletedButton.id = "deleteCompletedButton";
+        deleteCompletedButton.classList.add("styled-buttons")
         deleteCompletedButton.innerText = "Delete Completed";
         deleteCompletedButton.addEventListener('click', function(event){
             todosList.deleteCompleted();
+            if(!todosList.hasCompletedTodos()){
+                let deleteCompletedButton = document.querySelector('#deleteCompletedButton');
+                deleteCompletedButton.parentNode.removeChild(deleteCompletedButton);
+            }
         })
         let thereIsNoButtonYet = !document.querySelector("#deleteCompletedButton");
         if(todosList.hasCompletedTodos() && thereIsNoButtonYet){  
@@ -196,6 +201,37 @@ let view = {
         this.displayTodos();
     },
     
+    showOnlyCompleted: function(){
+        debugger;
+        todosList.todos.forEach(function(todo, index){
+            let todoLi = document.querySelectorAll('li.todosLi')
+            if(!todo.completed){
+                todoLi[index].classList.add("hide");
+            }
+            else{
+                todoLi[index].classList.remove("hide");
+            }
+        })
+    },
+
+    showOnlyActive: function(){
+        todosList.todos.forEach(function(todo, index){
+            let todoLi = document.querySelectorAll('li.todosLi')
+            if(todo.completed){
+                todoLi[index].classList.add("hide");
+            }else{
+                todoLi[index].classList.remove("hide");
+            }
+        })
+    },
+
+    showAll: function(){
+        todosList.todos.forEach(function(todo, index){
+            let todoLi = document.querySelectorAll('li.todosLi')
+                todoLi[index].classList.remove("hide");
+        })
+    },
+
     setUpEventListeners: function(){
         var todosUl = document.querySelector("ul");  
 
