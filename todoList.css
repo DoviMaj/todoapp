@@ -1,14 +1,12 @@
-body{
-    
-    font-family: 'Inconsolata', monospace;
-    margin: 0px;
+body{    
+  font-family: 'Inconsolata', monospace;
+  margin: 0px;
 }
 h1{
-    margin: 30px;;
+    margin: 30px;
 }
 #title{
-    position: static;
-    width: 96%;
+    /* position: static; */
     font-size: 80px;
     text-align: center;
     color: rgb(230, 212, 168);
@@ -25,9 +23,9 @@ ul {
 }
 
 #todoList{
-    position: relative;
-    margin: auto; 
-    width: 30%;
+    /* position: relative; */
+    margin: auto;
+    width: max-content;
     border: 3px;
     box-shadow: 0px 26px 35px -13px rgba(64,97,66,1);
 }
@@ -40,10 +38,9 @@ ul {
 
 
 #addTodoTextInput{
-    width: 92.6%;
     height: 40px;
-    padding: 15px;  
-    font-size: 25px ;
+    padding: 15px;
+    font-size: 28px;
     background-color: lightgrey;
 }
 
@@ -79,15 +76,12 @@ input[type='checkbox']:checked {
 
 #deleteCompletedButton{
     list-style: none;
-    position: absolute;
-    left: 237px;
-    top: 88px;
+    margin-left: 31px;
 }
 
 .changeTodoInput{
-    width: 80%;
-    padding: 10px 10px 10px 44px;
-    margin: 5px 0px 5px 15px;
+    padding: 25px 0px 10px 55px;
+    /* margin: 5px 0px 5px 15px; */
     font-size: 25px;
 }
 
