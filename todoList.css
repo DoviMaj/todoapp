@@ -1,165 +1,169 @@
 body{    
-  font-family: 'Inconsolata', monospace;
-  margin: 0px;
-}
-h1{
-    margin: 30px;
-}
-#title{
-    /* position: static; */
-    font-size: 57px;
-    text-align: center;
-    color: rgb(230, 212, 168);
-}
-
-#topButtons{
-    margin: 0px;
-}
-
-ul {
-    list-style-type: none;
-    margin: 0px;
-    padding: 0px;
-}
-
-#todoList{
-    /* position: relative; */
-    margin: auto;
-    width: max-content;
-    border: 3px;
-    box-shadow: 0px 26px 35px -13px rgba(64,97,66,1);
-}
-
-.todosLi {
-    padding: 25px 0px 10px 26px;
-    font-size: 25px;
-    border-bottom: 1px solid lightgrey;
-}
-
-
-#addTodoTextInput{
-    height: 40px;
-    padding: 15px;
-    font-size: 28px;
-    background-color: lightgrey;
-}
-
-::placeholder{
-    font-size: 26px;
-    font-style: italic;
-    color: #c4a6a6;
-}
-
-input[type='checkbox'] {
-    -webkit-appearance:none;
-    float: left;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #FFFFFF;
-    border-radius:5px;
-    background:rgb(223, 202, 202);
-    margin-right: 20px;
-}
-input[type='checkbox']:checked {
-    background: rgb(230, 212, 168);
-}
-
-.deleteButton{
-    margin-right: 40px;
-    float: right;
-    border-radius: 50%;
-    border: none;
-    font-size: 20px;
-    color: #8ea094;
-    background-color: white;
-}
-
-#deleteCompletedButton{
-    list-style: none;
-    margin-left: 31px;
-}
-
-.changeTodoInput{
-    padding: 25px 0px 10px 55px;
-    /* margin: 5px 0px 5px 15px; */
-    font-size: 25px;
-}
-
-#deleteAllButton{
-    float: right;
-    margin: 20px 55px 0px 0px;
-    color: inherit;
-    padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid #0000008f;
-    border-radius: 3px;
-}
-
-#toggleAllButton{
-    position: relative;
-    margin: 20px 0px 0px 27px;
-}
-
-input{
     font-family: 'Inconsolata', monospace;
-    outline: none;
-    border: none;
-}
-
-.hide {
-    position: absolute !important;
-    top: -9999px !important;
-    left: -9999px !important;
- }
-.checked{
-    text-decoration: line-through;
-    font-style : italic;
-    color : #8ea094;
- }
-#top-buttons{
-    padding-top: 25px;
-}
-#lower-buttons{
-     text-align: center;
-     padding: 20px;
- }
-
- .styled-buttons{
-    display: inline;
-    color: inherit;
-    margin: 3px;
-    padding: 3px 7px;
-    text-decoration: none;
-    border: 1px solid #0000008f;
-    border-radius: 3px;
-    cursor: pointer;
- }
-
- #lower-buttons li{
-     display: inline;
- }
-
-span{
-    position: absolute;
-    bottom: 19px;
-    right: 17px;
-    text-decoration: underline;
-    color: rgb(165, 148, 105);
-    margin: 10px;
- }
-
-#footer{
-    text-align: center;
-    padding-top: 24px;
-    margin-bottom: 20px;
-    color: lightgrey ;
-}
-
-a{
-    color: inherit;
-}
-p{
-    margin-block-end: 0px;
-    margin-block-start: 10px;
-    font-size: 16px;
-}
+    margin: 0px;
+  }
+  h1{
+      margin: 30px;
+  }
+  #title{
+      /* position: static; */
+      font-size: 57px;
+      text-align: center;
+      color: rgb(230, 212, 168);
+  }
+  
+  #topButtons{
+      margin: 0px;
+  }
+  
+  ul {
+      list-style-type: none;
+      margin: 0px;
+      padding: 0px;
+  }
+  
+  #todoList{
+      /* position: relative; */
+      margin: auto;
+      width: max-content;
+      border: 3px;
+      box-shadow: 0px 26px 35px -13px rgba(64,97,66,1);
+      border-radius: 12px;
+  }
+  
+  .todosLi {
+      padding: 25px 0px 10px 26px;
+      font-size: 25px;
+      border-bottom: 1px solid lightgrey;
+  }
+  
+  
+  #addTodoTextInput{
+      height: 40px;
+      padding: 15px;
+      font-size: 28px;
+      background-color: lightgrey;
+      border-radius: 10px 10px 0px 0px;
+  }
+  
+  ::placeholder{
+      font-size: 26px;
+      font-style: italic;
+      color: #c4a6a6;
+  }
+  
+  input[type='checkbox'] {
+      -webkit-appearance:none;
+      float: left;
+      width: 20px;
+      height: 20px;
+      border: 2px solid #FFFFFF;
+      border-radius:5px;
+      background:rgb(223, 202, 202);
+      margin-right: 20px;
+  }
+  input[type='checkbox']:checked {
+      background: rgb(230, 212, 168);
+  }
+  
+  .deleteButton{
+      margin-right: 40px;
+      float: right;
+      border-radius: 50%;
+      border: none;
+      font-size: 20px;
+      color: white;
+      background-color: #8ea094;
+      outline: none;
+      cursor: pointer;
+  }
+  
+  #deleteCompletedButton{
+      list-style: none;
+      margin-left: 31px;
+  }
+  
+  .changeTodoInput{
+      padding: 25px 0px 10px 55px;
+      /* margin: 5px 0px 5px 15px; */
+      font-size: 25px;
+  }
+  
+  #deleteAllButton{
+      float: right;
+      margin: 20px 55px 0px 0px;
+      color: inherit;
+      padding: 3px 7px;
+      text-decoration: none;
+      border: 1px solid #0000008f;
+      border-radius: 3px;
+  }
+  
+  #toggleAllButton{
+      position: relative;
+      margin: 20px 0px 0px 27px;
+  }
+  
+  input{
+      font-family: 'Inconsolata', monospace;
+      outline: none;
+      border: none;
+  }
+  
+  .hide {
+      position: absolute !important;
+      top: -9999px !important;
+      left: -9999px !important;
+   }
+  .checked{
+      text-decoration: line-through;
+      font-style : italic;
+      color : #8ea094;
+   }
+  #top-buttons{
+      padding-top: 25px;
+  }
+  #lower-buttons{
+       text-align: center;
+       padding: 20px;
+   }
+  
+   .styled-buttons{
+      display: inline;
+      color: inherit;
+      margin: 3px;
+      padding: 3px 7px;
+      text-decoration: none;
+      border: 1px solid #0000008f;
+      border-radius: 3px;
+      cursor: pointer;
+   }
+  
+   #lower-buttons li{
+       display: inline;
+   }
+  
+  span{
+      position: absolute;
+      bottom: 19px;
+      right: 17px;
+      text-decoration: underline;
+      color: rgb(165, 148, 105);
+      margin: 10px;
+   }
+  
+  #footer{
+      text-align: center;
+      padding-top: 24px;
+      margin-bottom: 20px;
+      color: lightgrey ;
+  }
+  
+  a{
+      color: inherit;
+  }
+  p{
+      margin-block-end: 0px;
+      margin-block-start: 10px;
+      font-size: 16px;
+  }
