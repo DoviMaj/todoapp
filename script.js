@@ -158,7 +158,11 @@ let view = {
             }
         });
         changeTodoInput.addEventListener("blur", function(event){
-            view.displayTodos();
+            if(changeTodoInput.value !== ""){
+                  todosList.changeTodo(changeTodoInput.id, changeTodoInput.value);
+            } else {
+                  view.displayTodos();
+            }
         })
 
         
