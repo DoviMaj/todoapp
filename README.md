@@ -1,6 +1,10 @@
-#TodoListApp
+# To-do list App
 
-Learned from https://watchandcode.com/p/practical-javascript
-added a lot of features like local storage, sort option...
+Basics learned from https://watchandcode.com/p/practical-javascript
 
-Access it live here: https://dovimaj.github.io/todoapp/
+Added features:
+- local storage, 
+- sort option
+- UI
+
+Access it live here: [todoapp](https://dovimaj.github.io/todoapp/)
