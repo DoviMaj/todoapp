@@ -39,7 +39,7 @@ let todosList = {
         let todo = todosList.todos;
         for (var i= todo.length -1; i>=0; i--) {
             if(todo[i].completed === true){
-                this.deleteTodo(todo[i]);
+                this.deleteTodo(i);
             }
          }
        this.restoreTodos();
