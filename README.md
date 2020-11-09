@@ -6,7 +6,6 @@ Added features:
 - toggle all
 - delete completed
 - edit on click
-- local storage, 
 - sort option
 - UI from zero
 
